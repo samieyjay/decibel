@@ -1,1 +1,9 @@
 
+# update linux distribution
+
+sudo apt update
+
+# install clamax, dstat and rsync 
+
+sudo apt install -y clamav dstat rsync
+
