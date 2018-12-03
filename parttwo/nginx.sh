@@ -1,13 +1,13 @@
 sudo apt-get update
 
 # Download and add the signing key
-$ curl -o nginx_signing.key http://nginx.org/keys/nginx_signing.key
-$ sudo apt-key add nginx_signing.key
+curl -o nginx_signing.key http://nginx.org/keys/nginx_signing.key
+sudo apt-key add nginx_signing.key
 
 ## Add official NGINX repository to /etc/apt/sources.list
-echo "## Add official NGINX repository" >> /etc/apt/sources.list
-echo "deb http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
-echo "deb-src http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
+sudo echo "## Add official NGINX repository" >> /etc/apt/sources.list
+sudo echo "deb http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
+sudo echo "deb-src http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
 
 # Install Nginx
 sudo apt-get update
