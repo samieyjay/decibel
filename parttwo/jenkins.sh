@@ -1,20 +1,29 @@
-# install Java 
-apt-get install default-jdk
+# install Jenkins with Docker - Allow port 8080 on AWS SG
 
-# Add the repository key to the system
-wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-
+# Update the apt package index
 sudo apt-get update
 
-# Install Jenkins and its dependencies
-sudo apt-get install -y jenkins
+# Install packages to allow apt to use a repository over HTTPS
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+    
+# Add Docker’s official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-# Enable Jenkins
-sudo systemctl enable jenkins
+# set up the stable repository
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+   
+# Update the apt package index
+sudo apt-get update
 
-# Start Jenkins
-sudo systemctl start jenkins
+# Install the latest version of Docker CE
+sudo apt-get install -y docker-ce
 
-# Open port 8080 for Jenkins
-sudo ufw allow 8080
+#Install Jenkins - map port 8080 and 50000
+sudo docker run -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts
