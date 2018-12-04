@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
 
-                git url: 'https://github.com/samieyjay/decibel.git'
+                git branch: 'developer' url: 'https://github.com/samieyjay/decibel.git'
                 
                 sh 'echo $PWD'
 
