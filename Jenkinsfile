@@ -6,7 +6,7 @@ pipeline {
                 echo 'Running build automation'
                 sh """
                 git clone https://github.com/samieyjay/decibel.git 
-                ./decibel/partthree/dstat.sh --no-daemon
+                ./dstat.sh --no-daemon
                 """
             }
         }
