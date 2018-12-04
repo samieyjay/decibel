@@ -7,7 +7,7 @@ pipeline {
 
                 git url: 'https://github.com/samieyjay/decibel.git'
                 
-                echo '$PWD'
+                sh 'echo $PWD'
 
             }
         }
