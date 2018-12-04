@@ -1,10 +1,10 @@
 pipeline {
     agent any
     stages {
-        when {
-            branch 'developer'
-        }
         stage("SSH Steps Rocks!") {
+            when {
+                branch 'developer'
+            }
             steps {
                 input 'Does the staging environment look OK?'
                 milestone(1)
