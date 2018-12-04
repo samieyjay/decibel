@@ -1,14 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Get') {
+        stage('PullScript') {
             steps {
-                echo 'Running build automation'
+                echo 'Fetching script from Git'
                 git branch: 'developer', url: 'https://github.com/samieyjay/decibel.git'
-                sh 'echo $PWD'
+                echo $PWD
             }
         }
-        stage('DeployToRemoteServer') {
+        stage('ExecOnRemoteServer') {
             when {
                 branch 'developer'
             }
