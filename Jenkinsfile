@@ -5,7 +5,7 @@ pipeline {
   remote.name = 'Prod'
   remote.host = '35.178.161.189'
   remote.user = $USERNAME
-  remote.password = $USEPASS
+  remote.password = $USERPASS
   remote.allowAnyHosts = true
   stages {
     stage('Remote SSH') {
