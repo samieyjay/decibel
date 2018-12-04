@@ -29,7 +29,7 @@ pipeline {
                                         sourceFiles: 'partthree/dstat.sh',
                                         removePrefix: 'partthree/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo usr/bin/systemctl stop nginx && cd /tmp && ./dstat.sh && sudo usr/bin/systemctl start nginx'
+                                        execCommand: 'sudo cd /tmp && ./dstat'
                                     )
                                 ]
                             )
