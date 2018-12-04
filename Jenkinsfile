@@ -27,8 +27,9 @@ pipeline {
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: 'partthree/dstat.sh',
+                                        removePrefix: 'partthree/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo cd /tmp && ./dstat'
+                                        execCommand: 'sudo cd /tmp && usr/bin/bash ./dstat.sh'
                                     )
                                 ]
                             )
