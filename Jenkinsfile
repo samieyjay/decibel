@@ -7,7 +7,7 @@ pipeline {
                 sh """
                 if [ -d "/path/to/dir" ]
                 then
-                    rm -r decibel
+                    rm -r decibel/
                 else
                     echo "Error: Directory /path/to/dir does not exists."
                 fi
