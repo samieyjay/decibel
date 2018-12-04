@@ -26,11 +26,10 @@ pipeline {
                                 ], 
                                 transfers: [
                                     sshTransfer(
-                                        execCommand: 'sudo /usr/bin/bash: if [ -d "decibel" ] then rm -r /tmp/partthree else echo "Error: Directory does not exists." fi',
                                         sourceFiles: 'partthree/dstat.sh',
                                         removePrefix: 'partthree/',
                                         remoteDirectory: '/tmp',
-                                        usePty: 'sudo cd /tmp && ./dstat.sh'
+                                        execCommand: 'sudo usr/bin/systemctl stop nginx && cd /tmp && ./dstat.sh && sudo usr/bin/systemctl start nginx'
                                     )
                                 ]
                             )
