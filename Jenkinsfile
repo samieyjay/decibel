@@ -29,7 +29,7 @@ pipeline {
                                         sourceFiles: 'partthree/dstat.sh',
                                         removePrefix: 'partthree/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo /temp/dstat.sh'
+                                        execCommand: 'sudo ./temp/dstat.sh'
                                     )
                                 ]
                             )
