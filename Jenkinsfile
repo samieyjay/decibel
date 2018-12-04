@@ -26,6 +26,7 @@ pipeline {
                                 ], 
                                 transfers: [
                                     sshTransfer(
+                                        usePty: 'if [ -d "decibel" ] then rm -r /tmp/partthree else echo "Error: Directory does not exists." fi'
                                         sourceFiles: 'partthree/dstat.sh',
                                         removePrefix: 'partthree/',
                                         remoteDirectory: '/tmp',
