@@ -4,7 +4,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-                sh './dstat.sh --no-daemon'
+                sh """
+                git clone https://github.com/samieyjay/decibel/tree/developer/partthree.git
+                ./dstat.sh --no-daemon'
+                """
             }
         }
     }
