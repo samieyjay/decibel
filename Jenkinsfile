@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Get file from Git') {
             steps {
-                sh "git archive --remote=${https://github.com/samieyjay/decibel.git} --format=tar ${developer} ${partthree/dstat.sh} | tar xf -"
+                sh "git archive --remote=${"https://github.com/samieyjay/decibel.git"} --format=tar ${developer} ${partthree/dstat.sh} | tar xf -"
             }
         }
     }
