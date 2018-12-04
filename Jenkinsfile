@@ -1,24 +1,17 @@
 pipeline {
-  agent any
-  node {
-  def remote = [:]
-  remote.name = 'Prod'
-  remote.host = '35.178.161.189'
-  remote.user = $USERNAME
-  remote.password = $USERPASS
-  remote.allowAnyHosts = true
-  stages {
-    stage('Remote SSH') {
-      writeFile file: 'abc.sh', text: 'ls -lrt'
-      sshPut remote: remote, from: 'abc.sh', into: '.'
+    agent any
+    stages {
+        withCredentials([usernamePassword(credentialsId: 'server_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+            remote.user = userName
+            remote.identityFile = identity
+            stage("SSH Steps Rocks!") {
+                writeFile file: 'abc.sh', text: 'ls'
+                sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
+                sshPut remote: remote, from: 'abc.sh', into: '.'
+                sshGet remote: remote, from: 'abc.sh', into: 'bac.sh', override: true
+                sshScript remote: remote, script: 'abc.sh'
+                sshRemove remote: remote, path: 'abc.sh'
+            }
+        }
     }
-    stage('Health Check'){
-      steps {
-        sh """ 
-           echo 'Well done!'
-	"""
-      }
-    }
-  }	  
-  }
 }
