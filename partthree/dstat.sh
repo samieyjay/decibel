@@ -1,15 +1,14 @@
 # -tlvrn flag parses all dstat output 
 # run dstat for a specific period, run sed to modify data, then awk to parse to JSON
-timeout 10s dstat -tlvrn --output tempfile.csv
+timeout 10s dstat -tlvrn --output ~/tempfile.csv
 
 # takes in a file as an argument, e.g. tempfile.csv and creates a newly formatted file called dstat.csv which replaces "|" within the csv with a whitespace
-sed 's/,/ /g' tempfile.csv > dstat.csv
+sed 's/,/ /g' ~/tempfile.csv > ~/dstat.csv
 
 # pipes output of cat of formatted dstat.csv to awk for parsing data into json format
 # creates a file in json format with timestamp
 
-mkdir webfiles
-sudo cat dstat.csv | awk ' BEGIN { print  " [ " ; }                 \
+sudo cat ~/dstat.csv | awk ' BEGIN { print  " [ " ; }                 \
        { print                                                 \
                "\""$1" "$2"\": \n{"                            \
                "\n\t\"Load (avg)\":\t{"                        \
@@ -49,8 +48,8 @@ sudo cat dstat.csv | awk ' BEGIN { print  " [ " ; }                 \
                        "\t\t\"send\": \""$28"\"\n\t}"          \
                "\n},\n"                                        \
        }                                                       \
-       END { print "]" } ' > webfiles/dstat_$(date +"%Y%m%d_%H%M%S").json
+       END { print "]" } ' > /usr/share/nginx/html/cicd/dstat_$(date +"%Y%m%d_%H%M%S").json
 
 # deletes dstat.csv from to clean file and save disk space
-rm tempfile.csv
-rm dstat.csv
+rm ~/tempfile.csv
+rm ~/dstat.csv
