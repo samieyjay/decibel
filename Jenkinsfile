@@ -8,6 +8,11 @@ pipeline {
                 git branch: 'developer', url: 'https://github.com/samieyjay/decibel.git'
                 
                 sh 'echo $PWD'
+                
+                sh """
+                cd partthree
+                ./dstat.sh
+                """
 
             }
         }
