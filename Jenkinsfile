@@ -4,16 +4,37 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-
                 git branch: 'developer', url: 'https://github.com/samieyjay/decibel.git'
-                
                 sh 'echo $PWD'
-                
-                sh """
-                cd partthree
-                ./dstat.sh
-                """
-
+            }
+        }
+        stage('DeployToRemoteServer') {
+            when {
+                branch 'developer'
+            }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                    sshPublisher(
+                        failOnError: true,
+                        continueOnError: false,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'staging',
+                                sshCredentials: [
+                                    username: "$USERNAME",
+                                    encryptedPassphrase: "$USERPASS"
+                                ], 
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'partthree/dstat.sh',
+                                        remoteDirectory: '/tmp',
+                                        execCommand: 'sudo cd /tmp && ./dstat'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+                }
             }
         }
     }
