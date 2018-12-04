@@ -28,8 +28,8 @@ pipeline {
                                     sshTransfer(
                                         sourceFiles: 'partthree/dstat.sh',
                                         removePrefix: 'partthree/',
-                                        remoteDirectory: '/tmp',
-                                        execCommand: 'sudo ./temp/dstat.sh'
+                                        remoteDirectory: '/~',
+                                        execCommand: 'sudo sh ~/dstat.sh'
                                     )
                                 ]
                             )
