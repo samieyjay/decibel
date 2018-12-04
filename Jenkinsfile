@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
                 sh """
-                rm -r /decibel
+                rm -r decibel
                 """
             }
         }
