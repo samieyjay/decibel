@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
 
-                git url https://github.com/samieyjay/decibel.git
+                git url: 'https://github.com/samieyjay/decibel.git'
 
             }
         }
