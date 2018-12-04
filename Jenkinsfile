@@ -5,9 +5,9 @@ pipeline {
             steps {
                 echo 'Running build automation'
                 sh """
-                if [ -d "/path/to/dir" ]
+                if [ -d "decibel" ]
                 then
-                    rm -r decibel/
+                    rm -r decibel
                 else
                     echo "Error: Directory /path/to/dir does not exists."
                 fi
