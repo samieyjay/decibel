@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Get') {
             steps {
                 echo 'Running build automation'
                 git branch: 'developer', url: 'https://github.com/samieyjay/decibel.git'
@@ -27,9 +27,8 @@ pipeline {
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: 'partthree/dstat.sh',
-                                        removePrefix: 'partthree/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo sh /tmp/dstat.sh'
+                                        execCommand: 'sudo sh /tmp/partthree/dstat.sh && rm -r /tmp/partthree'
                                     )
                                 ]
                             )
