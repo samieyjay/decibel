@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Running build automation'
                 sh """
-                rm -r decibel
+                if [ -d folder ]; then rm -rf folder; fi
                 git clone https://github.com/samieyjay/decibel.git
                 """
             }
