@@ -2,6 +2,14 @@
 # run dstat for a specific period, run sed to modify data, then awk to parse to JSON
 timeout 10s dstat -tlvrn --output ~/tempfile.csv
 
+########################
+# Future development
+# ------------------
+# current script only runs when code is built on Jenkins
+# add dstat command to /etc/cron.d/dstat to run every few minutes
+# dstat -tlvrn --output ~/dstat.csv 5 3 > /dev/null 
+# run script to update static json file every few minutes
+
 # takes in a file as an argument, e.g. tempfile.csv and creates a newly formatted file called dstat.csv which replaces "|" within the csv with a whitespace
 sed 's/,/ /g' ~/tempfile.csv > ~/dstat.csv
 
