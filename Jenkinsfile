@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Fetching script from Git'
                 git branch: 'developer', url: 'https://github.com/samieyjay/decibel.git'
-                echo $PWD
+                sh 'echo $PWD'
             }
         }
         stage('ExecOnRemoteServer') {
@@ -26,9 +26,9 @@ pipeline {
                                 ], 
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'partthree/dstat.sh',
+                                        sourceFiles: 'parttwo/dstat.sh',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo sh /tmp/partthree/dstat.sh && rm -r /tmp/partthree'
+                                        execCommand: 'sudo sh /tmp/parttwo/dstat.sh && rm -r /tmp/parttwo'
                                     )
                                 ]
                             )
