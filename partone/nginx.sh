@@ -5,7 +5,8 @@ curl -o nginx_signing.key http://nginx.org/keys/nginx_signing.key
 sudo apt-key add nginx_signing.key
 
 ## Add official NGINX repository to /etc/apt/sources.list
-sudo echo -e "\n## Add official NGINX repository\n\
+sudo echo -e "\n\
+## Add official NGINX repository\n\
 deb http://nginx.org/packages/ubuntu/ xenial nginx\n\
 deb-src http://nginx.org/packages/ubuntu/ xenial nginx" >> /etc/apt/sources.list
 
